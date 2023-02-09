@@ -47,6 +47,8 @@ public class ListUserAction extends Action {
 		request.setAttribute("resultPage", resultPage);
 		request.setAttribute("search", search);
 		
+		System.out.println("ListUserAction.java 33333333333333333333333333");
+		
 		return "forward:/user/listUser.jsp";
 	}
 }

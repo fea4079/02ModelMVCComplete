@@ -127,7 +127,7 @@ public class UserDao {
 		rs.close();
 		pStmt.close();
 		con.close();
-
+		System.out.println("UserDao.getUserList return map ="+map);
 		return map;
 	}
 
@@ -182,7 +182,7 @@ public class UserDao {
 					"WHERE row_seq BETWEEN "+((search.getCurrentPage()-1)*search.getPageSize()+1) +" AND "+search.getCurrentPage()*search.getPageSize();
 		
 		System.out.println("UserDAO :: make SQL :: "+ sql);	
-		
+		System.out.println("UserDao.makeCurrentPageSql return sql ="+sql);
 		return sql;
 	}
 }

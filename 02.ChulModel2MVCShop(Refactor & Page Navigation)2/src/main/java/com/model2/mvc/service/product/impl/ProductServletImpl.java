@@ -1,35 +1,37 @@
 package com.model2.mvc.service.product.impl;
 
-import java.util.HashMap;
+import java.util.Map;
 
-import com.model2.mvc.common.*;
-import com.model2.mvc.service.product.dao.*;
+import com.model2.mvc.service.product.ProductService;
+import com.model2.mvc.service.product.dao.ProductDao;
+import com.model2.mvc.common.Search;
+import com.model2.mvc.service.domain.*;
 
 
 public class ProductServletImpl implements ProductService{
 	
-	private ProductDAO productDAO;
+	private ProductDao productDao;
 	
 	public ProductServletImpl() {
-		productDAO = new ProductDAO();
+		productDao = new ProductDao();
 	}
 
 	public void addProduct(Product product) throws Exception {
-		productDAO.insertProduct(product);
+		productDao.insertProduct(product);
 		System.out.println("P_S_Impl :"+product);
 	}
 	
 	public Product getProduct(int prodNo) throws Exception {
-		return productDAO.findProduct(prodNo);
+		return productDao.findProduct(prodNo);
 	}
 	
 
-	public HashMap<String,Object> getProductList(SearchVO searchVO) throws Exception {
-		return productDAO.getProductList(searchVO);
+	public Map<String,Object> getProductList(Search search) throws Exception {
+		return productDao.getProductList(search);
 	}
 
 	public void updateProduct(Product product) throws Exception {
-		productDAO.updateProduct(product);
+		productDao.updateProduct(product);
 	}
 
 

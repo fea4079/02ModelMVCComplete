@@ -37,6 +37,7 @@ public class RequestFilter implements Filter{
 										throws IOException, ServletException {
 		request.setCharacterEncoding("euc-kr");
 		filterChain.doFilter(request, response);
+		System.out.println("RequestFilter.java¿”");
 	}
 
 	public void destroy() {

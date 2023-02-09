@@ -33,7 +33,7 @@ public class UpdateUserAction extends Action {
 		if(sessionId.equals(userId)){
 			session.setAttribute("user", user);
 		}
-		
+		System.out.println("UpdateUserAction.java 444444444444444444444444444");
 		return "redirect:/getUser.do?userId="+userId;
 	}
 }

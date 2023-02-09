@@ -28,6 +28,7 @@ public class AddUserAction extends Action {
 		UserService userService=new UserServiceImpl();
 		userService.addUser(user);
 		
+		System.out.println("AddUserAction.java 1111111111111111111");
 		return "redirect:/user/loginView.jsp";
 	}
 }

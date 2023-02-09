@@ -20,7 +20,7 @@ public class GetUserAction extends Action{
 		User user=userService.getUser(userId);
 		
 		request.setAttribute("user", user);
-		
+		System.out.println("GetUserAction.java 222222222222222222222222");
 		return "forward:/user/getUser.jsp";
 	}
 }
