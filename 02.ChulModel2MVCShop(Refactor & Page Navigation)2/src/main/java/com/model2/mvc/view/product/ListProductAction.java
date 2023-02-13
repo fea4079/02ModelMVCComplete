@@ -1,6 +1,5 @@
 package com.model2.mvc.view.product;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +10,7 @@ import com.model2.mvc.common.Search;
 import com.model2.mvc.framework.Action;
 import com.model2.mvc.service.product.ProductService;
 import com.model2.mvc.service.product.impl.ProductServletImpl;
-import com.model2.mvc.service.user.UserService;
-import com.model2.mvc.service.user.impl.UserServiceImpl;
+
 
 
 
@@ -24,6 +22,7 @@ public class ListProductAction extends Action {
 	public String execute(	HttpServletRequest request,	HttpServletResponse response) throws Exception {
 		
 		Search search=new Search();
+		System.out.println("ListProductAction.java search= "+search);
 		
 		int currentPage=1;
 		
@@ -35,26 +34,31 @@ public class ListProductAction extends Action {
 		search.setSearchCondition(request.getParameter("searchCondition"));
 		search.setSearchKeyword(request.getParameter("searchKeyword"));
 		
+		System.out.println("ListProductAction.java search.getCurrentPage= "+search.getCurrentPage());
+		System.out.println("ListProductAction.java search.setSearchCondition= "+search.getSearchCondition());
+		System.out.println("ListProductAction.java search.getSearchKeyword= "+search.getSearchKeyword());
+		
 		// web.xml  meta-data 로 부터 상수 추출 
 		int pageSize = Integer.parseInt( getServletContext().getInitParameter("pageSize"));
 		int pageUnit  =  Integer.parseInt(getServletContext().getInitParameter("pageUnit"));
 		search.setPageSize(pageSize);
 		
 		// Business logic 수행
-		UserService userService=new UserServiceImpl();
-		Map<String , Object> map=userService.getUserList(search);
+		ProductService productService=new ProductServletImpl();
+		Map<String , Object> map=productService.getProductList(search);
 	
 		Page resultPage	= 
 				new Page( currentPage, ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
-		System.out.println("ListUserAction ::"+resultPage);
+		System.out.println("ListProductAction.java resultPage= "+resultPage);
 		
 		// Model 과 View 연결
 		String menu = request.getParameter("menu");
+		System.out.println("ListProductAction.java menu= "+menu);
 		request.setAttribute("list", map.get("list"));
 		request.setAttribute("resultPage", resultPage);
 		request.setAttribute("search", search);
 		
-		System.out.println("ListProductAction 333333333333333333333333333333333333333333");
+		System.out.println("ListProductAction.java 333333333333333333333333333333333333333333\n");
 		
 		return "forward:/product/listProduct.jsp";
 	}

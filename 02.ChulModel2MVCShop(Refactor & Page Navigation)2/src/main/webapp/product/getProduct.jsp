@@ -1,12 +1,14 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
 <%@ page import="com.model2.mvc.service.domain.*" %>
+<%@ page import="com.model2.mvc.common.Search" %>
 
 <%
 	Product product = (Product)request.getAttribute("Product");
-	System.out.println("여기는 getProduct.jsp 여기 작동함"+product);
+	System.out.println("여기는 getProduct.jsp product= "+product);
 %>
  
 <%
+	Search search = (Search)request.getAttribute("search");
 	String menu = request.getParameter("menu");
 	System.out.println("여기는 getProduct.jsp에 getParameter한 menu값 = "+menu);
 %> 

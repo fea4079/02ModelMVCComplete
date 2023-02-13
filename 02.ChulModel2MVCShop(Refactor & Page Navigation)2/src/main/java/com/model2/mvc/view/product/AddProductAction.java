@@ -31,7 +31,7 @@ public class AddProductAction extends Action {
 		product.setProdDetail(request.getParameter("prodDetail"));
 		product.setManuDate(request.getParameter("manuDate"));
 		product.setPrice(Integer.parseInt(request.getParameter("price")));
-		System.out.println("AddProductAction에 상품가격(PRICE) 입력완료");
+		System.out.println("AddProductAction.java 상품가격(PRICE) 입력완료");
 		
 		product.setFileName(request.getParameter("filename"));
 //		productVO.setRegDate(request.getParameter("regDate"));
@@ -42,7 +42,7 @@ public class AddProductAction extends Action {
 		service.addProduct(product);
 		
 		request.setAttribute("Product", product);
-		System.out.println("AddProductAction 1111111111111111111111");
+		System.out.println("AddProductAction.java 1111111111111111111111");
 		
 		return "forward:/product/getProduct.jsp";
 	}

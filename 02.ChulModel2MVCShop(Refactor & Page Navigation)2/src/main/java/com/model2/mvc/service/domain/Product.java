@@ -58,13 +58,14 @@ public class Product {
 	}
 	public void setProdNo(int prodNo) {
 		this.prodNo = prodNo;
-		System.out.println(prodNo);
+		
 	}
 	public Date getRegDate() {
 		return regDate;
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+		System.out.println("Product ½ÇÇàµÊ");
 	}
 
 	// Override

@@ -40,7 +40,7 @@ public class UpdateProductAction extends Action {
 		request.setAttribute("Product", product);
 //		System.out.println("UpdateProductAction에 request에 setAttribute 받은 prodctVO"+productVO);
 //		System.out.println("4.여기는 UpdateProductAction 완료");
-		System.out.println("UpdateProductAction 4444444444444444444444444444444444444444");
+		System.out.println("UpdateProductAction.java 4444444444444444444444444444444444444444");
 		
 		return "forward:/product/getProduct.jsp?menu=manage";
 	}

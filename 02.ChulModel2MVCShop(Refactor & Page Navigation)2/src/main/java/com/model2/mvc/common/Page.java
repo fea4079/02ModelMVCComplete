@@ -37,6 +37,7 @@ public class Page {
 	
 	///Mehtod
 	public int getCurrentPage() {
+		System.out.println("Page.getCurrentPage currentPage= "+currentPage);
 		return currentPage;
 	}
 	public void setCurrentPage(int currentPage) {

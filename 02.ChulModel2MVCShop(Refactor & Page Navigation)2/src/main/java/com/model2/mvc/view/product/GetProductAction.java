@@ -17,7 +17,7 @@ public class GetProductAction extends Action{
 
 	public String execute(	HttpServletRequest request,HttpServletResponse response) throws Exception  {
 		int prodNo=Integer.parseInt(request.getParameter("prodNo"));
-		System.out.println("GetProductAction"+prodNo);
+		System.out.println("GetProductAction.java prodNo= "+prodNo);
 //		ProductVO productVO = new ProductVO(); 
 //		productVO = (ProductVO)request.getAttribute("ProductVO");
 		
@@ -31,7 +31,7 @@ public class GetProductAction extends Action{
 //			return "forward:/product/updateProduct.jsp";
 		
 //		}
-		System.out.println("GetProductAction 2222222222222222222222222222222222");
+		System.out.println("GetProductAction.java 2222222222222222222222222222222222\n");
 		if(menu.equals("manage")) {
 			return "forward:/updateProductView.do";	
 		}else {

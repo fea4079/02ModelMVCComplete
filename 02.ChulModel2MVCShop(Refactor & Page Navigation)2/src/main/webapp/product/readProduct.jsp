@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
 
-<%@ page import="com.model2.mvc.service.product.vo.*" %>
+<%@ page import="com.model2.mvc.service.domain.*" %>
 
 <%
-	ProductVO productVO = (ProductVO)request.getAttribute("ProductVO");
+	Product product = (Product)request.getAttribute("Product");
 %>
 <%
 	String menu = request.getParameter("menu");
@@ -48,7 +48,7 @@
 		<td class="ct_write01">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="105"><%=productVO.getProdName() %></td>
+					<td width="105"><%=product.getProdName() %></td>
 					<td>	</td>
 				</tr>
 			</table>
@@ -63,7 +63,7 @@
 			가격<img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle">
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=productVO.getPrice() %></td>
+		<td class="ct_write01"><%=product.getPrice() %></td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -72,7 +72,7 @@
 	<tr>
 		<td width="104" class="ct_write">등록일</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=productVO.getRegDate() %></td>
+		<td class="ct_write01"><%=product.getRegDate() %></td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -80,7 +80,7 @@
 	<tr>
 		<td width="104" class="ct_write">현재상태</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=productVO.getProTranCode() %></td>
+		<td class="ct_write01"><%=product.getProTranCode() %></td>
 	</tr>
 
 	<tr>
@@ -122,7 +122,7 @@
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="/updateProductView.do?prodNo=<%=productVO.getProdNo() %>">수정</a>
+						<a href="/updateProductView.do?prodNo=<%=product.getProdNo() %>">수정</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>

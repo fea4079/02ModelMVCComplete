@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
 
-<%@ page import="com.model2.mvc.service.product.vo.*" %>
+<%@ page import="com.model2.mvc.service.domain.*" %>
 
 <%
-	ProductVO productVO = (ProductVO)request.getAttribute("ProductVO");
-    System.out.println("여기는 updateProdecutView.jsp"+productVO);
+	Product product = (Product)request.getAttribute("Product");
+    System.out.println("여기는 updateProdecutView.jsp"+product);
 %>
 
 
@@ -50,7 +50,7 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="105">
-					<input 	type="text" name="<%=productVO.getProdName() %>" class="ct_input_g" 
+					<input 	type="text" name="<%=product.getProdName() %>" class="ct_input_g" 
 										style="width: 100px; height: 19px" maxLength="20" value="333333">
 					</td>
 				</tr>
@@ -66,7 +66,7 @@
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-		<input 	type="text" name="<%=productVO.getProdDetail() %>" class="ct_input_g" 
+		<input 	type="text" name="<%=product.getProdDetail() %>" class="ct_input_g" 
 										style="width: 100px; height: 19px" maxLength="20" value="333333">
 		</td>
 	</tr>
@@ -79,7 +79,7 @@
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="<%=productVO.getRegDate() %>" class="ct_input_g" 
+			<input 	type="text" name="<%=product.getRegDate() %>" class="ct_input_g" 
 										style="width: 100px; height: 19px" maxLength="20" value="333333">
 		</td>
 	</tr>
@@ -92,7 +92,7 @@
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-		<input 	type="text" name="<%=productVO.getPrice() %>" class="ct_input_g" 
+		<input 	type="text" name="<%=product.getPrice() %>" class="ct_input_g" 
 										style="width: 100px; height: 19px" maxLength="20" value="333333">
 		</td>
 	</tr>

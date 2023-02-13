@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
 
-<%@ page import="com.model2.mvc.service.product.vo.*" %>
+<%@ page import="com.model2.mvc.service.domain.*" %>
 
 <%
-	ProductVO productVO = (ProductVO)request.getAttribute("ProductVO");
-    System.out.println("여기는 updateProdecutView.jsp productVO="+productVO);
+	Product product = (Product)request.getAttribute("Product");
+    System.out.println("여기는 updateProdecutView.jsp product="+product);
 %>
 <script type="text/javascript">
 function fncUpdateProduct() {
@@ -57,7 +57,7 @@ function fncAddProduct(){
 
 <form name="detailForm" method="post" action="/uodateProduct.do">
 
-<input type="hidden" name="prodNo" value="${requestScope.ProductVO.prodNo}"/>
+<input type="hidden" name="prodNo" value="${requestScope.Product.prodNo}"/>
 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
@@ -92,7 +92,7 @@ function fncAddProduct(){
 				<tr>
 					<td width="105">
 						<input 	type="text" name="prodName" class="ct_input_g" 
-								style="width: 100px; height: 19px" maxLength="20" value="${requestScope.ProductVO.prodName}">
+								style="width: 100px; height: 19px" maxLength="20" value="${requestScope.Product.prodName}">
 					</td>
 				</tr>
 			</table>
@@ -107,7 +107,7 @@ function fncAddProduct(){
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="prodDetail" value="${requestScope.ProductVO.prodDetail}" class="ct_input_g" 
+			<input type="text" name="prodDetail" value="${requestScope.Product.prodDetail}" class="ct_input_g" 
 						style="width: 100px; height: 19px" maxLength="10"	minLength="6">
 		</td>
 	</tr>
@@ -120,7 +120,7 @@ function fncAddProduct(){
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" readonly="readonly" name="manuDate" value="${requestScope.ProductVO.manuDate}" 	
+			<input type="text" readonly="readonly" name="manuDate" value="${requestScope.Product.manuDate}" 	
 						class="ct_input_g" style="width: 100px; height: 19px" maxLength="10" minLength="6">&nbsp;
 						<img 	src="../images/ct_icon_date.gif" width="15" height="15" 
 									onclick="show_calendar('document.detailForm.manuDate', document.detailForm.manuDate.value)" />

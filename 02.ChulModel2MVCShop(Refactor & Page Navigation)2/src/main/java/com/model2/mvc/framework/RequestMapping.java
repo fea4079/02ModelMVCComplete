@@ -25,7 +25,7 @@ public class RequestMapping {
 			properties.load(in);
 		}catch(Exception ex){
 			System.out.println(ex);
-			throw new RuntimeException("actionmapping.properties 파일 로딩 실패 :"  + ex);
+			throw new RuntimeException("RequestMapping.java actionmapping.properties 파일 로딩 실패 :"  + ex);
 		}finally{
 			if(in != null){
 				try{ 
@@ -50,9 +50,9 @@ public class RequestMapping {
 		if(action == null){
 			
 			String className = properties.getProperty(path);
-			System.out.println("prop : " + properties);
-			System.out.println("path : " + path);			
-			System.out.println("className : " + className);
+			System.out.println("RequestMapping.java properties= " + properties);
+			System.out.println("RequestMapping.java path= " + path);			
+			System.out.println("RequestMapping.java className= " + className);
 			className = className.trim();
 			
 			try{
@@ -62,11 +62,11 @@ public class RequestMapping {
 					map.put(path, (Action)obj);
 					action = (Action)obj;
 				}else{
-					throw new ClassCastException("Class형변환시 오류 발생  ");
+					throw new ClassCastException("RequestMapping.java Class형변환시 오류 발생  ");
 				}
 			}catch(Exception ex){
 				System.out.println(ex);
-				throw new RuntimeException("Action정보를 구하는 도중 오류 발생 : " + ex);
+				throw new RuntimeException("RequestMapping.java Action정보를 구하는 도중 오류 발생 : " + ex);
 			}
 		}
 		return action;

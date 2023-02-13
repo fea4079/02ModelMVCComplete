@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
 
-<%@ page import="com.model2.mvc.service.product.vo.*" %>
+<%@ page import="com.model2.mvc.service.domain.*" %>
 
 <%
-	ProductVO productVO = (ProductVO)request.getAttribute("ProductVO");
-    System.out.println("여기는 updateProdecut.jsp"+productVO);
+	Product product = (Product)request.getAttribute("Product");
+    System.out.println("updateProdecut.jsp product= "+product);
     String menu = request.getParameter("menu");
 %>
 
@@ -39,7 +39,7 @@ function resetData() {
 
 <form name="detailForm"  method="post" >
 
-<input type="hidden" name="prodNo" value="<%=productVO.getProdNo() %>">
+<input type="hidden" name="prodNo" value="<%=product.getProdNo() %>">
 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
@@ -70,7 +70,7 @@ function resetData() {
 		<td class="ct_write01">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="105"><%=productVO.getProdName() %></td>
+					<td width="105"><%=product.getProdName() %></td>
 					<td>	</td>
 				</tr>
 			</table>
@@ -86,7 +86,7 @@ function resetData() {
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="price" value="<%=productVO.getPrice() %>" class="ct_input_g" 
+			<input type="text" name="price" value="<%=product.getPrice() %>" class="ct_input_g" 
 						style="width:100px; height:19px"  maxLength="50" >
 		</td>
 	</tr>
@@ -98,7 +98,7 @@ function resetData() {
 		<td width="104" class="ct_write">등록일</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="regDate" value="<%=productVO.getRegDate() %>" class="ct_input_g" 
+			<input 	type="text" name="regDate" value="<%=product.getRegDate() %>" class="ct_input_g" 
 							style="width:370px; height:19px"  maxLength="100">
 		</td>
 	</tr>
@@ -142,7 +142,7 @@ function resetData() {
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td height="26">
-						<input 	type="text" name="proTranCode" value="<%=productVO.getProTranCode() %>" class="ct_input_g" 
+						<input 	type="text" name="proTranCode" value="<%=product.getProTranCode() %>" class="ct_input_g" 
 										style="width:100px; height:19px" onChange="check_email(this.form);">
 					</td>
 				</tr>

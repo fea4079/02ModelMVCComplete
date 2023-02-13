@@ -11,7 +11,6 @@ import java.util.Map;
 import com.model2.mvc.common.Search;
 import com.model2.mvc.common.util.DBUtil;
 import com.model2.mvc.service.domain.Product;
-import com.model2.mvc.service.domain.User;
 
 
 /**
@@ -29,7 +28,7 @@ public class ProductDao{
 		Connection con = DBUtil.getConnection();
 //		System.out.println("ProductDAO에 fineProduct에 DBUtil 연결 완료");
 
-		String sql = " select * from PRODUCT where PROD_NO=?";
+		String sql = " SELECT * FROM product WHERE prod_no=?";
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.setInt(1, prodNo);
@@ -40,16 +39,17 @@ public class ProductDao{
 		Product product = null;
 		while (rs.next()) {
 			product = new Product();
-			product.setProdNo(rs.getInt("PROD_NO"));
-			product.setProdName(rs.getString("PROD_NAME"));
-			product.setProdDetail(rs.getString("PROD_DETAIL"));
-			product.setManuDate(rs.getString("MANUFACTURE_DAY"));
-			product.setPrice(rs.getInt("PRICE"));
-			product.setFileName(rs.getString("IMAGE_FILE"));
-			product.setRegDate(rs.getDate("REG_DATE"));
+			product.setProdNo(rs.getInt("prod_no"));
+			product.setProdName(rs.getString("prod_name"));
+			product.setProdDetail(rs.getString("prod_detail"));
+			product.setManuDate(rs.getString("manufacture_day"));
+			product.setPrice(rs.getInt("price"));
+			product.setFileName(rs.getString("image_file"));
+			product.setRegDate(rs.getDate("reg_date"));
 			
 		}
-		
+		rs.close();
+		stmt.close();
 		con.close();
 		System.out.println("ProductDAO.findProduct aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		return product;
@@ -58,8 +58,8 @@ public class ProductDao{
 	public void insertProduct(Product product)throws Exception{
 		Connection con = DBUtil.getConnection();
 
-		String sql = "	insert into PRODUCT(PROD_NO, PROD_NAME, PROD_DETAIL, MANUFACTURE_DAY, PRICE, IMAGE_FILE, REG_DATE) \r\n"
-				+ "			    values (seq_product_prod_no.NEXTVAL, ?, ?, ?, ?, ?, SYSDATE)";
+		String sql = "	INSERT INTO product(PROD_NO, PROD_NAME, PROD_DETAIL, MANUFACTURE_DAY, PRICE, IMAGE_FILE, REG_DATE) \r\n"
+				+ "			    VALUES (seq_product_prod_no.NEXTVAL, ?, ?, ?, ?, ?, SYSDATE)";
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
 //		stmt.setInt(1, productVO.getProdNo());
@@ -73,6 +73,7 @@ public class ProductDao{
 		stmt.executeUpdate();
 		System.out.println("ProductDAO.insertProduct bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 		
+		stmt.close();
 		con.close();
 	}
 	
@@ -83,54 +84,54 @@ public class ProductDao{
 		
 		Connection con = DBUtil.getConnection();
 		
-		String sql = "select * from product ";
+		String sql = "SELECT * FROM product ";
 		
 		if (search.getSearchCondition() != null) {
 			if (search.getSearchCondition().equals("0")) {
-				sql += " where PROD_NO LIKE'%" + search.getSearchKeyword()
+				sql += " WHERE prod_no LIKE'%" + search.getSearchKeyword()
 						+ "%'";
 			} else if (search.getSearchCondition().equals("1")) {
-				sql += " where PROD_NAME LIKE'%" + search.getSearchKeyword()
+				sql += " WHERE prod_name LIKE'%" + search.getSearchKeyword()
 						+ "%'";
 			} else if (search.getSearchCondition().equals("2")) {
-				sql += " where PRICE LIKE'%" + search.getSearchKeyword()
+				sql += " WHERE price LIKE'%" + search.getSearchKeyword()
 				+ "%'";
 			}
 		}
-		sql += " order by PROD_NO";
+		sql += " ORDER BY prod_no";
 
-		System.out.println("ProductDAO::Original SQL :: " + sql);
+		System.out.println("ProductDao.getProductList Original SQL= " + sql);
 		
 		//TotalCount Get
 		int totalCount = this.getTotalCount(sql);
-		System.out.println("ProductDAO :: totalCount  :: " + totalCount);
+		System.out.println("ProductDao.getProductList totalCount= " + totalCount);
 		
 		//==> CurrentPage 게시물만 받도록 Query 다시구성
 		sql = makeCurrentPageSql(sql, search);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
 
-		System.out.println(search);
+		System.out.println("ProductDao.java.getProductList search= "+search);
 		
 		List<Product> list = new ArrayList<Product>();
 		
 		while(rs.next()){
 			Product product = new Product();
 			product.setProdNo(rs.getInt("prod_no"));
-			product.setProdName(rs.getString("user_name"));
+			product.setProdName(rs.getString("prod_name"));
 			product.setPrice(rs.getInt("price"));
 			list.add(product);
 		}
 		//==> totalCount 정보 저장
-				map.put("totalCount", new Integer(totalCount));
-				//==> currentPage 의 게시물 정보 갖는 List 저장
-				map.put("list", list);
+		map.put("totalCount", new Integer(totalCount));
+		//==> currentPage 의 게시물 정보 갖는 List 저장
+		map.put("list", list);
 
-				rs.close();
-				stmt.close();
-				con.close();
-				System.out.println("UserDao.getUserList return map ="+map);
-				return map;
+		rs.close();
+		stmt.close();
+		con.close();
+		System.out.println("ProductDao.java.getProductList return map ="+map);
+		return map;
 		}
 		
 		
@@ -154,8 +155,9 @@ public class ProductDao{
 		stmt.setDate(6, product.getRegDate());
 		stmt.setInt(7, product.getProdNo());
 		stmt.executeUpdate();
-		System.out.println("ProductDAO.updateProduct dddddddddddddddddddddddddddddddddd");
+		System.out.println("ProductDAO.java.updateProduct dddddddddddddddddddddddddddddddddd");
 		
+		stmt.close();
 		con.close();
 	}
 	
@@ -188,8 +190,8 @@ public class ProductDao{
 									"	WHERE ROWNUM <="+search.getCurrentPage()*search.getPageSize()+" ) " +
 					"WHERE row_seq BETWEEN "+((search.getCurrentPage()-1)*search.getPageSize()+1) +" AND "+search.getCurrentPage()*search.getPageSize();
 		
-		System.out.println("ProductDAO :: make SQL :: "+ sql);	
-		System.out.println("ProductDao.makeCurrentPageSql return sql ="+sql);
+		System.out.println("ProductDAO.java  make SQL :: "+ sql);	
+		System.out.println("ProductDao.java.makeCurrentPageSql return sql= "+sql+"\n");
 		return sql;
 	}
 }

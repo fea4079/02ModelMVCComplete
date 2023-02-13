@@ -22,9 +22,9 @@ public class UpdateProductViewAction extends Action{
 //		ProductVO productVO=service.getProduct(prodNo);
 		
 		String menu = request.getParameter("menu");
-		System.out.println("UpdateProductViewAction menu="+menu);	
+		System.out.println("UpdateProductViewAction.java menu="+menu);	
 		request.setAttribute("Porduct", product);
-		System.out.println("UpdateProductViewAction 555555555555555555555555555555555555");
+		System.out.println("UpdateProductViewAction.java 555555555555555555555555555555555555\n");
 		return "forward:/product/updateProductView.jsp";
 	}
 }

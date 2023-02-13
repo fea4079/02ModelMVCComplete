@@ -30,7 +30,7 @@ public class ActionServlet extends HttpServlet {
 		String url = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String reqeustPath = url.substring(contextPath.length());
-		System.out.println("\nActionServlet.service() RequestURI : "+reqeustPath);
+		System.out.println("\nActionServlet.java.service() RequestURI : "+reqeustPath);
 		
 		try{
 			Action action = requestMapping.getAction(reqeustPath);
